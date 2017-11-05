@@ -3,12 +3,14 @@ var RandWordInfo = require("./randWord.js");
 var results = require('./winLossCounter.js');
 var gameResult = false;
 
-console.log(RandWordInfo);
-var indexOfWord = 1;
-var newWord = new module.RandWordInfo(indexOfWord);
+var newWord = new RandWordInfo(Math.floor(Math.random()*7));
+
+//newWord.printWordInfo;
+//var indexOfWord = 1;
+//var newWord = new module.RandWordInfo(indexOfWord);
 //console.log(newWord.word);
 //console.log(newWord.wordLength);
-newWord.printWordInfo();
+//newWord.printWordInfo();
 //newWord.createBlanks();
 
 
@@ -25,9 +27,8 @@ inquirer.prompt({
 }).then(function(response){
   //console.log("You chose: " + response.usersChoice);
   if (response.usersChoice === "yes"){
-    selectWord(randWord);
-    console.log("word is: " + );
-    playGame(magicWord.module);
+    //console.log("word is: "+ newWord.word);
+    playGame(newWord.word);
   }
   else{
     console.log("guess you're too scared to play the game of thrones");
@@ -36,10 +37,25 @@ inquirer.prompt({
 }
 
 function playGame(passThroughWord){
+  var magicWord = newWord.word;
+  var wordSplitUp = magicWord.split("");
+  console.log(wordSplitUp);
+  newWord.createBlanks();
+  //console.log(wordSplitUp);
   inquirer.prompt({
     type: "input",
     name: "guess",
     message: "Guess a letter"
+  }).then(function(response){
+    console.log(response.guess);
+    if (wordSplitUp.indexOf(response.guess) > -1) {
+        for (var i = 0; i < magicWord.length; i++) {
+            if (wordSplitUp[i] === response.guess) {
+                wordSplitUp[i] = response.guess;
+                console.log(wordSplitUp);
+            }
+        }
+      }
   });
 }
 
@@ -47,4 +63,4 @@ function playGame(passThroughWord){
 startGame();
 
 
-exports.module = gameResult;
+module.exports = gameResult;

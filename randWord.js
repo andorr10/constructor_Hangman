@@ -5,33 +5,38 @@
 // randomWord: wordArray[Math.floor(Math.random() * wordArray.length)]
 // };
 // console.log(randWord);
-var wordList = ["dothraki", "dragon", "westeros", "winter", "cersei", "whitewalker", "citadel", "lanister", "kingslanding", "baratheon", "direwolf", "wildling", "danaerys", "valerian", "hodor", "nymeria", "littlefinger", "lordbaelish", "imp"];
+
+//**************************************************
+//var wordList = ["dothraki", "dragon", "westeros", "winter", "cersei", "whitewalker", "citadel", "lanister", "kingslanding", "baratheon", "direwolf", "wildling", "danaerys", "valerian", "hodor", "nymeria", "littlefinger", "lordbaelish", "imp"];
 //var indexOfWord = Math.floor(Math.random() * wordList.length);
 var indexOfWord = 1;
 function RandWordInfo(indexOfWord){
-  //console.log(indexOfWord);
-  this.word = wordList[indexOfWord];
-  this.wordLength = this.word.length;
+  this.wordList = ["dothraki", "dragon", "westeros", "winter", "cersei"];
+  this.word = this.wordList[indexOfWord];
+  //this.wordLength = this.word.length;
   this.printWordInfo = function(){
     console.log("word: " + this.word);
-    console.log("Length of " + this.word + "is " + this.wordLength);
+    console.log("Length of " + this.word + " is " + this.wordLength);
     console.log("___________________");
   };
   this.guessesLeft = 8;
   this.incorrectGuesses = [];
   this.createBlanks = function(){
-    console.log(this.word + " function works!");
+    //console.log(this.word + " function works!");
+    var randWordSplit = this.word.split("");
     var emptyWord = "";
-        for(var i = 0; i< this.wordLength; i++){
-          emptyWord = emptyWord + "_ ";
+        for(var i = 0; i < randWordSplit.length; i++){
+          emptyWord = emptyWord + "_";
         }
     console.log(emptyWord);
   };
-  this.replaceBlanks = function(){
-    
-  };
+  // this.replaceBlanks = function(){
+  //
+  // };
 }
 
+
+//****************************************************************
 
 //console.log(RandWordInfo);
 //var newWord = new RandWordInfo(indexOfWord);
@@ -66,4 +71,4 @@ function RandWordInfo(indexOfWord){
 //console.log(randWord);
 //console.log("word: " + RandWordInfo.word);
 
-exports.module = RandWordInfo;
+module.exports = RandWordInfo;
