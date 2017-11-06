@@ -34,87 +34,51 @@ inquirer.prompt({
 //the function below will run all of logic for the game, it will take the constructor from randWord.js and pass it on to the newWord;
 //
 //______________________________________
-//** need to comment back in the formula later
-
-// function playGame(){
-//   var magicWord = newWord.word;
-//   var wordSplitUp = magicWord.split("");
-//   var blanks = newWord.createBlanks();
-//   if(newWord.guessesLeft > 0) {
-//
-//
-//     console.log("array for word: " + wordSplitUp);
-//     console.log("Magic Word: " + blanks);
-//
-//     inquirer.prompt({
-//       type: "input",
-//       name: "guess",
-//       message: "Guess a letter"
-//     }).then(function(response){
-//       //console.log(response.guess);
-//
-//       if (wordSplitUp.indexOf(response.guess) > -1) {
-//           for (var i = 0; i < wordSplitUp.length; i++) {
-//               if (wordSplitUp[i] === response.guess) {
-//                   wordSplitUp[i] = response.guess;
-//                   //console.log(wordSplitUp);
-//               }
-//           }
-//         }
-//     });
-//   }
-//   else{
-//     console.log("when you play the game of thrones, you win or you die. And you died.  Play again?");
-//     startGame();
-//   }
-// }
-
-
-startGame();
-
-
 
 function playGame(){
   var magicWord = newWord.word;
   var wordSplitUp = magicWord.split("");
   var blanks = newWord.createBlanks();
-  console.log(wordSplitUp);
+
+  console.log(wordSplitUp); //  <- make sure to remove this when done, or user will know word
   console.log(blanks);
   askForLetter();
-
+//********************************************************
   function gameLogic(input){
-    if(magicWord.indexOf(input) > -1){
+    if(magicWord.indexOf(input) > -1){  // if user's guess is in word replace it
       for (var i = 0; i < wordSplitUp.length; i++) {
           if (wordSplitUp[i] === input) {
             console.log("You guess right!");
+            console.log("-------------------------------");
               blanks[i] = input;
-              console.log("updated word info: " + blanks);
-              askForLetter();
+              console.log("Word info: " + blanks);
+              console.log("Incorrect Guesses: " + newWord.incorrectGuesses);
           }
+
       }
-      if(blanks.indexOf("_") === -1){
+      if(blanks.indexOf("_") === -1){ // if there are no more blanks, tell user they won
         console.log("Chaos is a ladder, and you have used it to find a way to sit on the Iron throne. Play again?");
         startGame();
+        return;
       }
+      askForLetter();
     }
     else{
-      console.log("sorry, you guessed incorrectly");
+      console.log("Sorry, you guessed incorrectly");
+      console.log("-------------------------------");
       newWord.incorrectGuesses.push(input);
+      console.log("Word info: " + blanks);
       console.log("Incorrect Guesses: " + newWord.incorrectGuesses);
       newWord.guessesLeft--;
-
-      // if(newWord.guessesLeft > 0) {
-      //   console.log("array for word: " + wordSplitUp);
-      //   console.log("Magic Word: " + blanks);
-      // }
       if(newWord.guessesLeft<1){
-        console.log("when you play the game of thrones, you win or you die. And you died.  Play again?");
+        console.log("When you play the game of thrones, you win or you die. And you died.  Play again?");
         startGame();
+        return;
       }
       askForLetter();
     }
   }
-
+//**********************************************************
   function askForLetter() {
     inquirer.prompt({
     type: "input",
@@ -123,7 +87,7 @@ function playGame(){
   }).then(function(response){
     //console.log(response.guess);
     var playersGuess = response.guess;
-    console.log("you selected: " + playersGuess);
+    console.log("You selected: " + playersGuess);
     gameLogic(playersGuess);
   });
   }
@@ -153,6 +117,6 @@ function playGame(){
   //   }
 
 
-
+startGame();
 
 module.exports = gameResult;
