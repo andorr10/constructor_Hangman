@@ -24,9 +24,9 @@ function RandWordInfo(indexOfWord){
   this.createBlanks = function(){
     //console.log(this.word + " function works!");
     var randWordSplit = this.word.split("");
-    var emptyWord = "";
+    var emptyWord = [];
         for(var i = 0; i < randWordSplit.length; i++){
-          emptyWord = emptyWord + "_";
+          emptyWord.push("_");
         }
     //console.log(emptyWord);
     return emptyWord;
@@ -38,6 +38,7 @@ function RandWordInfo(indexOfWord){
     if(this.guessesLeft < 1){
       console.log("sorry you lost");
     }
+
   };
 }
 

@@ -78,24 +78,27 @@ function playGame(){
   var magicWord = newWord.word;
   var wordSplitUp = magicWord.split("");
   var blanks = newWord.createBlanks();
-
+  console.log(wordSplitUp);
+  console.log(blanks);
   askForLetter();
 
   function gameLogic(input){
     if(magicWord.indexOf(input) > -1){
       for (var i = 0; i < wordSplitUp.length; i++) {
           if (wordSplitUp[i] === input) {
-              wordSplitUp[i] = input;
-              console.log("updated word info: " + wordSplitUp);
+            console.log("You guess right!");
+              blanks[i] = input;
+              console.log("updated word info: " + blanks);
+              askForLetter();
           }
       }
-      if(blanks.indexof("_") === -1){
-        Console.log("Chaos is a ladder, and you have used it to find a way to sit on the Iron throne. Play again?");
+      if(blanks.indexOf("_") === -1){
+        console.log("Chaos is a ladder, and you have used it to find a way to sit on the Iron throne. Play again?");
         startGame();
       }
     }
     else{
-      console.log("sorry, you guess incorrectly");
+      console.log("sorry, you guessed incorrectly");
       newWord.incorrectGuesses.push(input);
       console.log("Incorrect Guesses: " + newWord.incorrectGuesses);
       newWord.guessesLeft--;
@@ -124,7 +127,6 @@ function playGame(){
     gameLogic(playersGuess);
   });
   }
-
 }
 
 // function askForLetter() {
