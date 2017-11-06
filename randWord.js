@@ -28,11 +28,17 @@ function RandWordInfo(indexOfWord){
         for(var i = 0; i < randWordSplit.length; i++){
           emptyWord = emptyWord + "_";
         }
-    console.log(emptyWord);
+    //console.log(emptyWord);
+    return emptyWord;
   };
   // this.replaceBlanks = function(){
   //
   // };
+  this.gameStatus = function(){
+    if(this.guessesLeft < 1){
+      console.log("sorry you lost");
+    }
+  };
 }
 
 
