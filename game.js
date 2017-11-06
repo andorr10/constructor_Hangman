@@ -3,8 +3,11 @@ var RandWordInfo = require("./randWord.js");
 var results = require('./winLossCounter.js');
 var gameResult = false;
 
-var newWord = new RandWordInfo(Math.floor(Math.random()*5));
-  var playersGuess;
+var newWord;
+var playersGuess;
+var magicWord;
+var wordSplitUp;
+var blanks;
 //newWord.printWordInfo;
 //var indexOfWord = 1;
 //var newWord = new module.RandWordInfo(indexOfWord);
@@ -14,6 +17,10 @@ var newWord = new RandWordInfo(Math.floor(Math.random()*5));
 //newWord.createBlanks();
 
 function startGame(){
+newWord = new RandWordInfo(Math.floor(Math.random()*19));
+magicWord = newWord.word;
+wordSplitUp = magicWord.split("");
+blanks = newWord.createBlanks();
 inquirer.prompt({
   type: "list",
   name: "usersChoice",
@@ -36,11 +43,11 @@ inquirer.prompt({
 //______________________________________
 
 function playGame(){
-  var magicWord = newWord.word;
-  var wordSplitUp = magicWord.split("");
-  var blanks = newWord.createBlanks();
+  // var magicWord = newWord.word;
+  // var wordSplitUp = magicWord.split("");
+  // var blanks = newWord.createBlanks();
 
-  console.log(wordSplitUp); //  <- make sure to remove this when done, or user will know word
+  //console.log(wordSplitUp); //  <- make sure to remove this when done, or user will know word
   console.log(blanks);
   askForLetter();
 //********************************************************

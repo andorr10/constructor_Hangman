@@ -9,9 +9,9 @@
 //**************************************************
 //var wordList = ["dothraki", "dragon", "westeros", "winter", "cersei", "whitewalker", "citadel", "lanister", "kingslanding", "baratheon", "direwolf", "wildling", "danaerys", "valerian", "hodor", "nymeria", "littlefinger", "lordbaelish", "imp"];
 //var indexOfWord = Math.floor(Math.random() * wordList.length);
-var indexOfWord = 1;
+//var indexOfWord = 1;
 function RandWordInfo(indexOfWord){
-  this.wordList = ["dothraki", "dragon", "westeros", "winter", "cersei"];
+  this.wordList = ["dothraki", "dragon", "westeros", "winter", "cersei", "whitewalker", "citadel", "lanister", "kingslanding", "baratheon", "direwolf", "wildling", "danaerys", "valerian", "hodor", "nymeria", "littlefinger", "lordbaelish", "imp"];
   this.word = this.wordList[indexOfWord];
   //this.wordLength = this.word.length;
   this.printWordInfo = function(){
